@@ -1,7 +1,7 @@
 # pypermill
 
 *pypermill* is a simple standalone Python (3.X) clone of
-[factoidpipermill](github.com/FactomProject/factoidpapermill)
+[factoidpipermill](https://github.com/FactomProject/factoidpapermill)
 which creates a new Factoid keypair in human readable format.
 
 written by Sebastian Falbesoner <sebastian.falbesoner@gmail.com>
