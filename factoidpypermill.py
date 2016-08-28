@@ -7,6 +7,10 @@ import ed25519
 FactoidPrefix = b'\x5f\xb1'
 FactoidPrivatePrefix = b'\x64\x78'
 
+if str != bytes: # dummy ord() function for Python 3.X
+    def ord(c):
+        return c
+
 def SHA256D(bstr):
     return sha256(sha256(bstr).digest()).digest()
 
@@ -15,7 +19,7 @@ def Base58(bstr):
     num = 0
     p = 1
     for b in bstr[::-1]:
-        num += p*b
+        num += p*ord(b)
         p <<= 8
 
     result = ''
