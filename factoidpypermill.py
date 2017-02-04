@@ -37,11 +37,9 @@ def ConvertAddressToUserStr(prefix, addr):
     return Base58(data + SHA256D(data)[:4])
 
 
-def main():
-    # generate private key
-    privatekey = urandom(32)
+def GeneratePaperWalletStrings(privatekey):
+    # convert private key
     privaddr = ConvertAddressToUserStr(FactoidPrivatePrefix, privatekey)
-    print("New Factoid Private Key: %s" % privaddr)
 
     # determine public key
     publickey = ed25519.SigningKey(privatekey).get_verifying_key().to_bytes()
@@ -49,6 +47,13 @@ def main():
     publickey = b'\x01' + publickey
     publickey = SHA256D(publickey)
     publicaddr = ConvertAddressToUserStr(FactoidPrefix, publickey)
+
+    return privaddr, publicaddr
+
+
+def main():
+    privaddr, publicaddr = GeneratePaperWalletStrings(urandom(32))
+    print("New Factoid Private Key: %s" % privaddr)
     print("New Factoid Address:     %s" % publicaddr)
 
 
